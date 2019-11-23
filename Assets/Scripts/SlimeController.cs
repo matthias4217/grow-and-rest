@@ -41,6 +41,11 @@ public class SlimeController : MonoBehaviour
             MoveTowardsGoal();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        rigidbody2d.AddForce(-500.0f * gravity * (Vector3.zero - transform.position).normalized);
+    }
+
     public bool IsGoalReached()
     {
         // TODO : if the cube is less than goalThreshold from the goal, we teleport it and return true
