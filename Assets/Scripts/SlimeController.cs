@@ -15,14 +15,14 @@ public class SlimeController : MonoBehaviour
     private Vector3 currentSpeed =  Vector3.zero;
     private Rigidbody2D rigidbody2d;
     private SlimeAvatar avatar;
+    private GameManager gameManager;
 
     private void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         avatar = GetComponent<SlimeAvatar>();
-        FindObjectOfType<GameManager>().PlayerObserver += this.PlayerSelectedGoal; 
+        FindObjectOfType<GameManager>().PlayerObserver += this.PlayerSelectedGoal;
     }
-
 
     // Update is called once per frame
     void Update()
@@ -32,7 +32,8 @@ public class SlimeController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveTowardsGoal();
+        if (avatar.State == SlimeState.Living)
+            MoveTowardsGoal();
     }
 
     public bool IsGoalReached()
@@ -40,11 +41,21 @@ public class SlimeController : MonoBehaviour
         // TODO : if the cube is less than goalThreshold from the goal, we teleport it and return true
         if ((transform.position - Goal).magnitude < goalThreshold)
         {
+            rigidbody2d.velocity = Vector2.zero;
+            rigidbody2d.MovePosition(goal);
             avatar.Death();
+            return true;
         }
 
         return false;
         //throw new NotImplementedException();
+    }
+
+    public bool GetNewGoal()
+    {
+        // get a goal :
+        // find nearest chosen one, and do stuff
+        throw new NotImplementedException();
     }
 
     private void MoveTowardsGoal()
@@ -61,7 +72,7 @@ public class SlimeController : MonoBehaviour
 
     public void PlayerSelectedGoal(object sender, EventArgs args)
     {
-        if (avatar.State == SlimeState.living)
+        if (avatar.State == SlimeState.Living)
         {
             Goal = (args as PlayerObserverEventArgs).Position;
         }

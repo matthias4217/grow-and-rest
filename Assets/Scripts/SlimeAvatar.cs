@@ -4,13 +4,15 @@ using UnityEngine;
 
 public enum SlimeState
 {
-    living,
-    dead
+    Living,
+    Dead
 }
 
 public class SlimeAvatar : MonoBehaviour
 {
     [SerializeField] private SlimeState state;
+    [SerializeField] private bool isChosen;
+    private SlimeController _controller;
     public SlimeState State
     {
         get { return state; }
@@ -23,6 +25,7 @@ public class SlimeAvatar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _controller = GetComponent<SlimeController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         ownerColor = spriteRenderer.color;
@@ -31,19 +34,22 @@ public class SlimeAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (_controller.IsGoalReached())
+        {
+            state = SlimeState.Dead;
+        }
     }
 
     public void Death()
     {
-        State = SlimeState.dead;
+        State = SlimeState.Dead;
         spriteRenderer.color = Color.grey;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
     }
 
     public void ResetState()
     {
-        State = SlimeState.living;
+        State = SlimeState.Living;
         spriteRenderer.color = ownerColor;
         rb2d.constraints = RigidbodyConstraints2D.None;
     }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2139553180265897180}
   - component: {fileID: 1237898686456567138}
   - component: {fileID: 2139553180265897181}
+  - component: {fileID: 4811746349406449211}
   m_Layer: 0
   m_Name: Terre
   m_TagString: Untagged
@@ -118,3 +119,15 @@ CircleCollider2D:
   m_Offset: {x: 0.08, y: -0.06}
   serializedVersion: 2
   m_Radius: 3.57
+--- !u!114 &4811746349406449211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139553180265897182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271d2ae3666f4229ac73ea50ea51c54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
