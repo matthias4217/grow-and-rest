@@ -15,7 +15,8 @@ public class SlimeGenerator : MonoBehaviour
     {
         if (Time.time % 5.0f <= Time.deltaTime)
         {
-            SlimeFactory.GetSlime(new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)));
+            SlimeController slime = SlimeFactory.GetSlime(transform.position).gameObject.GetComponent<SlimeController>();
+            slime.Goal = -transform.position;
         }
     }
 }
