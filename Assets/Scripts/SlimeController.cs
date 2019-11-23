@@ -13,13 +13,14 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
     private Vector3 currentSpeed =  Vector3.zero;
-    private Rigidbody2D rigidbody;
+    private Rigidbody2D rigidbody2d;
     private SlimeAvatar avatar;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
         avatar = GetComponent<SlimeAvatar>();
+        FindObjectOfType<GameManager>().PlayerObserver += this.PlayerSelectedGoal; 
     }
 
 
@@ -54,7 +55,15 @@ public class SlimeController : MonoBehaviour
         Vector3 toGoal = (Goal - position).normalized;
         currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
         //position = position + Time.deltaTime * currentSpeed;
-        rigidbody.velocity = currentSpeed;
+        rigidbody2d.velocity = currentSpeed;
         //rigidbody.MovePosition(position);
+    }
+
+    public void PlayerSelectedGoal(object sender, EventArgs args)
+    {
+        if (avatar.State == SlimeState.living)
+        {
+            Goal = (args as PlayerObserverEventArgs).Position;
+        }
     }
 }
