@@ -4,13 +4,15 @@ using UnityEngine;
 
 public enum SlimeState
 {
-    living,
-    dead
+    Living,
+    Dead
 }
 
 public class SlimeAvatar : MonoBehaviour
 {
     [SerializeField] private SlimeState state;
+    [SerializeField] private bool isChosen;
+    private SlimeController _controller;
     public SlimeState State
     {
         get { return state; }
@@ -20,13 +22,16 @@ public class SlimeAvatar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        _controller = GetComponent<SlimeController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (_controller.IsGoalReached())
+        {
+            state = SlimeState.Dead;
+        }
     }
 
     private void OnMouseDown()

@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private bool instantiated = false;
+    private bool _instantiated = false;
 
     private void Awake()
     {
-        if (instantiated)
+        if (_instantiated)
         {
             Debug.LogError("Trying to instantiate multiple game managers !");
             Destroy(this);
         }
         else
         {
-            instantiated = true;
+            _instantiated = true;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

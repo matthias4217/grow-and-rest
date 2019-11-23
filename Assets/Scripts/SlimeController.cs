@@ -12,24 +12,21 @@ public class SlimeController : MonoBehaviour
 
     [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
-    private Vector3 currentSpeed =  Vector3.zero;
-    private Rigidbody2D rigidbody;
+    private Vector3 _currentSpeed =  Vector3.zero;
+    private Rigidbody2D _rigidbody;
+    private SlimeAvatar _avatar;
+    private GameManager _gameManager;
 
     private void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        IsGoalReached();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _avatar = GetComponent<SlimeAvatar>();
     }
 
     private void FixedUpdate()
     {
-        MoveTowardsGoal();
+        if (_avatar.State == SlimeState.Living)
+            MoveTowardsGoal();
     }
 
     public bool IsGoalReached()
@@ -39,11 +36,20 @@ public class SlimeController : MonoBehaviour
         {
             // TODO : move the color change to the Avatar
             GetComponent<SpriteRenderer>().color = Color.grey;
+            _rigidbody.velocity = Vector2.zero;
+            _rigidbody.MovePosition(goal);
             return true;
         }
 
         return false;
         //throw new NotImplementedException();
+    }
+
+    public bool GetNewGoal()
+    {
+        // get a goal :
+        // find nearest chosen one, and do stuff
+        throw new NotImplementedException();
     }
 
     private void MoveTowardsGoal()
@@ -52,9 +58,9 @@ public class SlimeController : MonoBehaviour
         // TODO : orientation of the slime (always with the gravity down)
         var position = transform.position;
         Vector3 toGoal = (Goal - position).normalized;
-        currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
+        _currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
         //position = position + Time.deltaTime * currentSpeed;
-        rigidbody.velocity = currentSpeed;
+        _rigidbody.velocity = _currentSpeed;
         //rigidbody.MovePosition(position);
     }
 }
