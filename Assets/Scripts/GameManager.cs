@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int nbrTrees;
     public int MaxTrees = 5;
     public int MinTrees = 2;
-    public GameObject TreePrefab;
+    public GameObject[] TreePrefab;
     private bool _instantiated = false;
     public static GameManager Instance {get; private set; }
     private List<float> currentGoalList = new List<float>();
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         for (int j = 0; j < nbrTrees; j++)
         {
             float angle = EarthAvatar.Instance.GetRandomAngle();
-            Instantiate(TreePrefab, EarthAvatar.Instance.GetUnityCoords(angle), Quaternion.Euler(0.0f, 0.0f, -angle));
+            Instantiate(TreePrefab[Random.Range(0, TreePrefab.Length -1)], EarthAvatar.Instance.GetUnityCoords(angle), Quaternion.Euler(0.0f, 0.0f, -angle));
         }
 
     }
