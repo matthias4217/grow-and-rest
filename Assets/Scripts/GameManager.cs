@@ -13,6 +13,10 @@ public class PlayerObserverEventArgs : EventArgs
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int nbrInterestPoints = 3;
+    [SerializeField] private int nbrTrees;
+    public int MaxTrees = 5;
+    public int MinTrees = 2;
+    public GameObject TreePrefab;
     private bool _instantiated = false;
     public static GameManager Instance {get; private set; }
     private List<float> currentGoalList = new List<float>();
@@ -42,15 +46,21 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         Random.InitState((int) System.DateTime.Now.Ticks);
+
+        nbrTrees = Random.Range(MinTrees, MaxTrees);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i=0;i<nbrInterestPoints;i++)
+        for (int i = 0; i < nbrInterestPoints; i++)
             currentGoalList.Add(EarthAvatar.Instance.GetRandomAngle());
 
-
+        for (int j = 0; j < nbrTrees; j++)
+        {
+            float angle = EarthAvatar.Instance.GetRandomAngle();
+            Instantiate(TreePrefab, EarthAvatar.Instance.GetUnityCoords(angle), Quaternion.Euler(0.0f, 0.0f, -angle));
+        }
 
     }
 
@@ -68,5 +78,11 @@ public class GameManager : MonoBehaviour
             poea.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             OnPlayerClick(poea);
         }
+    }
+
+    public static void OnAllTreesDead()
+    {
+        // TODO : End game
+        Debug.Log("End of the game");
     }
 }
