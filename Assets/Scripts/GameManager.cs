@@ -17,14 +17,22 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private float slimeSize = 0.17f;
     [SerializeField] private int nbrInterestPoints = 3;
+    [SerializeField] private int nbrTrees;
+    public int MaxTrees = 5;
+    public int MinTrees = 2;
+    public GameObject[] TreePrefab;
     private bool _instantiated = false;
     public static GameManager Instance {get; private set; }
     //private List<float> currentGoalList = new List<float>();
     private List<Structure> structures = new List<Structure>();
 
-    public event EventHandler PlayerObserver;
+    public event EventHandler PlayerMouseDownObserver;
 
-    public void OnPlayerClick(PlayerObserverEventArgs poea) => PlayerObserver?.Invoke(this, poea);
+    public void OnPlayerMouseDown(PlayerObserverEventArgs poea) => PlayerMouseDownObserver?.Invoke(this, poea);
+
+    public event EventHandler PlayerMouseUpObserver;
+
+    public void OnPlayerMouseUp() => PlayerMouseUpObserver?.Invoke(this, EventArgs.Empty);
 
     private void Awake()
     {
@@ -47,6 +55,8 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         Random.InitState((int) System.DateTime.Now.Ticks);
+
+        nbrTrees = Random.Range(MinTrees, MaxTrees);
     }
 
     // Start is called before the first frame update
@@ -56,6 +66,13 @@ public class GameManager : MonoBehaviour
         {
             //currentGoalList.Add(EarthAvatar.Instance.GetRandomAngle());
             AddStructure();
+        }
+
+        for (int j = 0; j < nbrTrees; j++)
+        {
+            float angle = EarthAvatar.Instance.GetRandomAngle();
+            Instantiate(TreePrefab[Random.Range(0, TreePrefab.Length - 1)], EarthAvatar.Instance.GetUnityCoords(angle),
+                Quaternion.Euler(0.0f, 0.0f, -angle));
         }
     }
 
@@ -98,11 +115,21 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
             poea.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            OnPlayerClick(poea);
+            OnPlayerMouseDown(poea);
         }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            OnPlayerMouseUp();
+        }
+    }
+
+    public static void OnAllTreesDead()
+    {
+        // TODO : End game
+        Debug.Log("End of the game");
     }
 }

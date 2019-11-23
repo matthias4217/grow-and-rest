@@ -24,7 +24,7 @@ public class SlimeFactory : MonoBehaviour
 
     private void Start()
     {
-        PreinstantiateSlimes(slimesToPreinstantiate);
+        PreinstantiateSlimes(/*slimesToPreinstantiate*/);
     }
 
     public static SlimeAvatar GetSlime(Vector2 spawnPosition)
@@ -53,9 +53,18 @@ public class SlimeFactory : MonoBehaviour
         return slime;
     }
 
-    private void PreinstantiateSlimes(int quantity)
+    private void PreinstantiateSlimes(/*int quantity*/)
     {
-        for (int i = 0; i < quantity; i++)
+        SlimeGenerator[] slimeGenerators = FindObjectsOfType<SlimeGenerator>();
+        slimesToPreinstantiate = 0;
+
+        for (int j = 0; j < slimeGenerators.Length; j++)
+        {
+            slimesToPreinstantiate += slimeGenerators[j].ToGenerate;
+        }
+
+
+        for (int i = 0; i < slimesToPreinstantiate; i++)
         {
             SlimeAvatar slime = CreateSlime();
             _availableSlimes.Enqueue(slime);

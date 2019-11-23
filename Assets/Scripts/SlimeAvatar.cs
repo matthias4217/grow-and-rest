@@ -29,6 +29,7 @@ public class SlimeAvatar : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb2d = GetComponent<Rigidbody2D>();
         ownerColor = spriteRenderer.color;
+        DeathObserver.Subscribe(this);
     }
 
     // Update is called once per frame
@@ -46,6 +47,7 @@ public class SlimeAvatar : MonoBehaviour
         spriteRenderer.color = Color.grey;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         rb2d.simulated = false;
+        DeathObserver.Unsubscribe(this);
     }
 
     public void ResetState()
@@ -54,9 +56,10 @@ public class SlimeAvatar : MonoBehaviour
         spriteRenderer.color = ownerColor;
         rb2d.constraints = RigidbodyConstraints2D.None;
     }
-
+    /*
     private void OnMouseDown()
     {
         SlimeFactory.Release(this);
     }
+    */
 }
