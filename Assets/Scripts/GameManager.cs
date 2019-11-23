@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using System.IO;
 using Random = UnityEngine.Random;
 
 public class PlayerObserverEventArgs : EventArgs
@@ -14,7 +15,7 @@ public class PlayerObserverEventArgs : EventArgs
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float slimeSize = 0.16f;
+    [SerializeField] private float slimeSize = 0.17f;
     [SerializeField] private int nbrInterestPoints = 3;
     private bool _instantiated = false;
     public static GameManager Instance {get; private set; }
@@ -56,10 +57,6 @@ public class GameManager : MonoBehaviour
             //currentGoalList.Add(EarthAvatar.Instance.GetRandomAngle());
             AddStructure();
         }
-
-
-
-
     }
 
     public Vector3 GetRandomInterestPoint()
@@ -72,8 +69,6 @@ public class GameManager : MonoBehaviour
             structures.Remove(selectedStruct);
             AddStructure();
         }
-        // TODO : rotate the struct
-        // TODO : scale to a slime size
         float rotationAngle = selectedStruct.originAngle;
         return EarthAvatar.Instance.GetUnityCoords(selectedStruct.originAngle)
                + Quaternion.AngleAxis(rotationAngle, Vector3.back)
@@ -82,9 +77,22 @@ public class GameManager : MonoBehaviour
 
     private void AddStructure()
     {
-            Structure dolmen = Structure.GetDolmen();
-            dolmen.originAngle = EarthAvatar.Instance.GetRandomAngle();
-            structures.Add(dolmen);
+        int choice = Random.Range(0, (int) StructureChoice.StructureChoiceSize);
+        Structure resStruct;
+        switch (choice)
+        {
+            case (int) StructureChoice.Dolmen:
+                resStruct = Structure.GetDolmen();
+                break;
+            case (int) StructureChoice.Guillotine:
+                resStruct = Structure.GetGuillotine();
+                break;
+            default:
+                throw new Exception("Out of range !");
+
+        }
+        resStruct.originAngle = EarthAvatar.Instance.GetRandomAngle();
+        structures.Add(resStruct);
     }
 
     // Update is called once per frame
