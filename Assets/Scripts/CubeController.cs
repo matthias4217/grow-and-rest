@@ -8,7 +8,7 @@ public class CubeController : MonoBehaviour
 
     [SerializeField] private float speed = 1;
     [SerializeField] private Vector3 goal = Vector3.zero;
-    [SerializeField] private float gravity = 1;
+    [SerializeField] private float gravity = 0.5;
     [SerializeField] private float goalThreshold = 1;
     private Vector3 currentSpeed =  Vector3.zero;
 
@@ -24,6 +24,7 @@ public class CubeController : MonoBehaviour
         // TODO : if the cube is less than goalThreshold from the goal, we teleport it and return true
         if ((transform.position - goal).magnitude < goalThreshold)
         {
+            // TODO : move the color change to the Avatar
             GetComponent<SpriteRenderer>().color = Color.grey;
             return true;
         }
