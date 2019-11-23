@@ -12,15 +12,19 @@ public class SlimeFactory : MonoBehaviour
     private static Queue<SlimeAvatar> availableSlimes = new Queue<SlimeAvatar>();
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+
         instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        PreinstantiateSlimes(slimesToPreinstantiate);
     }
 
     public static SlimeAvatar GetSlime(Vector2 SpawnPosition)
@@ -47,6 +51,15 @@ public class SlimeFactory : MonoBehaviour
         slimeInstance.SetActive(false);
         SlimeAvatar slime = slimeInstance.GetComponent<SlimeAvatar>();
         return slime;
+    }
+
+    private void PreinstantiateSlimes(int quantity)
+    {
+        for (int i = 0; i < quantity; i++)
+        {
+            SlimeAvatar slime = CreateSlime();
+            availableSlimes.Enqueue(slime);
+        }
     }
 
     public static void Release(SlimeAvatar slime)
