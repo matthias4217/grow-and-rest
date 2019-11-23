@@ -46,8 +46,8 @@ MonoBehaviour:
   slimeSize: 0.16
   nbrInterestPoints: 3
   nbrTrees: 0
-  MaxTrees: 5
-  MinTrees: 2
+  MaxTrees: 15
+  MinTrees: 5
   TreePrefab:
   - {fileID: 2933015644487615052, guid: 6935dbd1cff520b4789024cc64df44d0, type: 3}
   - {fileID: 8245705598036751776, guid: 0a5ea475226770f4fad8ae4c964da3d2, type: 3}
