@@ -64,6 +64,7 @@ public class SlimeFactory : MonoBehaviour
 
     public static void Release(SlimeAvatar slime)
     {
+        slime.ResetState();
         slime.gameObject.SetActive(false);
         _availableSlimes.Enqueue(slime);
     }

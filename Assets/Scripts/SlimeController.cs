@@ -12,20 +12,26 @@ public class SlimeController : MonoBehaviour
 
     [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
-    private Vector3 _currentSpeed =  Vector3.zero;
-    private Rigidbody2D _rigidbody;
-    private SlimeAvatar _avatar;
-    private GameManager _gameManager;
+    private Vector3 currentSpeed =  Vector3.zero;
+    private Rigidbody2D rigidbody;
+    private SlimeAvatar avatar;
+    private GameManager gameManager;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _avatar = GetComponent<SlimeAvatar>();
+        rigidbody = GetComponent<Rigidbody2D>();
+        avatar = GetComponent<SlimeAvatar>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        IsGoalReached();
     }
 
     private void FixedUpdate()
     {
-        if (_avatar.State == SlimeState.Living)
+        if (avatar.State == SlimeState.Living)
             MoveTowardsGoal();
     }
 
@@ -34,10 +40,9 @@ public class SlimeController : MonoBehaviour
         // TODO : if the cube is less than goalThreshold from the goal, we teleport it and return true
         if ((transform.position - Goal).magnitude < goalThreshold)
         {
-            // TODO : move the color change to the Avatar
-            GetComponent<SpriteRenderer>().color = Color.grey;
-            _rigidbody.velocity = Vector2.zero;
-            _rigidbody.MovePosition(goal);
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.MovePosition(goal);
+            avatar.Death();
             return true;
         }
 
@@ -58,9 +63,9 @@ public class SlimeController : MonoBehaviour
         // TODO : orientation of the slime (always with the gravity down)
         var position = transform.position;
         Vector3 toGoal = (Goal - position).normalized;
-        _currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
+        currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
         //position = position + Time.deltaTime * currentSpeed;
-        _rigidbody.velocity = _currentSpeed;
+        rigidbody.velocity = currentSpeed;
         //rigidbody.MovePosition(position);
     }
 }

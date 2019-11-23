@@ -18,11 +18,16 @@ public class SlimeAvatar : MonoBehaviour
         get { return state; }
         set { state = value; }
     }
+    public Color ownerColor;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
         _controller = GetComponent<SlimeController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        ownerColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -32,6 +37,18 @@ public class SlimeAvatar : MonoBehaviour
         {
             state = SlimeState.Dead;
         }
+    }
+
+    public void Death()
+    {
+        State = SlimeState.Dead;
+        spriteRenderer.color = Color.grey;
+    }
+
+    public void ResetState()
+    {
+        State = SlimeState.Living;
+        spriteRenderer.color = ownerColor;
     }
 
     private void OnMouseDown()
