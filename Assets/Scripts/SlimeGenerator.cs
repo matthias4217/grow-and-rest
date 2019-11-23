@@ -21,17 +21,16 @@ public class SlimeGenerator : MonoBehaviour
         if (spawnTimer >= spawnCooldown)
         {
             GenerateSlime();
+            spawnTimer = 0f;
         }
     }
 
     void GenerateSlime()
     {
         SlimeController slime = SlimeFactory.GetSlime(transform.position).gameObject.GetComponent<SlimeController>();
-        slime.Goal = -transform.position;
-        // TODO : make the slime be the chosen one with a certain probability
-        // the chosen one will have a particular random goal
-        //slime.GetNewGoal();
-        spawnTimer = 0.0f;
+        //slime.Goal = -transform.position;
+        slime.GetNewGoal();
+        //spawnTimer = 0.0f;
     }
 
     private void OnMouseDown()

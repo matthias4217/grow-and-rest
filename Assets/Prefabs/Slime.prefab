@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  isChosen: 0
   ownerColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &724681203771411641
 MonoBehaviour:
@@ -133,7 +134,7 @@ MonoBehaviour:
   speed: 1
   goal: {x: 0, y: 0, z: 0}
   gravity: 0.2
-  goalThreshold: 1
+  goalThreshold: 0.2
 --- !u!61 &6124598608787583251
 BoxCollider2D:
   m_ObjectHideFlags: 0

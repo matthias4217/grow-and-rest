@@ -1,11 +1,23 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace DefaultNamespace
-{
     public class EarthAvatar : MonoBehaviour
     {
         private float _radius;
+        public static EarthAvatar Instance { get; private set; }
+
+        private void Awake()
+        {
+            if (Instance == null) {
+                Instance = this;
+                //DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
 
         private void Start()
         {
@@ -20,6 +32,13 @@ namespace DefaultNamespace
             Debug.Log("Angle 90 to angle: " + GetAngle(GetUnityCoords(90f)));
         }
 
+
+        // angles are between -180 and 180 degree
+        public float GetRandomAngle()
+        {
+            return Random.Range(-180f, 180f);
+        }
+
         // the angle 0 is at the top
         public Vector3 GetUnityCoords(float angle)
         {
@@ -32,4 +51,3 @@ namespace DefaultNamespace
                 Vector3.back);
         }
     }
-}

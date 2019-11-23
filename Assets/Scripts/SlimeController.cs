@@ -21,6 +21,7 @@ public class SlimeController : MonoBehaviour
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         avatar = GetComponent<SlimeAvatar>();
+        gameManager = GameManager.Instance;
         FindObjectOfType<GameManager>().PlayerObserver += this.PlayerSelectedGoal;
     }
 
@@ -48,14 +49,13 @@ public class SlimeController : MonoBehaviour
         }
 
         return false;
-        //throw new NotImplementedException();
     }
 
-    public bool GetNewGoal()
+    public void GetNewGoal()
     {
         // get a goal :
-        // find nearest chosen one, and do stuff
-        throw new NotImplementedException();
+        // find random interest point
+        goal = EarthAvatar.Instance.GetUnityCoords(GameManager.Instance.GetRandomInterestPoint());
     }
 
     private void MoveTowardsGoal()
