@@ -21,8 +21,12 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsGoal();
         IsGoalReached();
+    }
+
+    private void FixedUpdate()
+    {
+        MoveTowardsGoal();
     }
 
     public bool IsGoalReached()
@@ -46,7 +50,8 @@ public class SlimeController : MonoBehaviour
         var position = transform.position;
         Vector3 toGoal = (goal - position).normalized;
         currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
-        position = position + Time.deltaTime * currentSpeed;
-        rigidbody.MovePosition(position);
+        //position = position + Time.deltaTime * currentSpeed;
+        rigidbody.velocity = currentSpeed;
+        //rigidbody.MovePosition(position);
     }
 }
