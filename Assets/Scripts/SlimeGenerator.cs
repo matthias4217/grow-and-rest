@@ -20,9 +20,19 @@ public class SlimeGenerator : MonoBehaviour
 
         if (spawnTimer >= spawnCooldown)
         {
-            SlimeController slime = SlimeFactory.GetSlime(transform.position).gameObject.GetComponent<SlimeController>();
-            slime.Goal = -transform.position;
-            spawnTimer = 0.0f;
+            GenerateSlime();
         }
+    }
+
+    void GenerateSlime()
+    {
+        SlimeController slime = SlimeFactory.GetSlime(transform.position).gameObject.GetComponent<SlimeController>();
+        slime.Goal = -transform.position;
+        spawnTimer = 0.0f;
+    }
+
+    private void OnMouseDown()
+    {
+        GenerateSlime();
     }
 }
