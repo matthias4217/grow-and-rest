@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeController : MonoBehaviour
+public class SlimeController : MonoBehaviour
 {
 
     [SerializeField] private float speed = 1;
     [SerializeField] private Vector3 goal = Vector3.zero;
-    [SerializeField] private float gravity = 0.5;
+    [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
     private Vector3 currentSpeed =  Vector3.zero;
 
@@ -36,6 +36,7 @@ public class CubeController : MonoBehaviour
     private void MoveTowardsGoal()
     {
         // TODO : slimey movement
+        // TODO : orientation of the slime (always with the gravity down)
         var position = transform.position;
         Vector3 toGoal = (goal - position).normalized;
         currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
