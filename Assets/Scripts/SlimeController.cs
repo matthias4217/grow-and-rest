@@ -14,10 +14,12 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float goalThreshold = 1;
     private Vector3 currentSpeed =  Vector3.zero;
     private Rigidbody2D rigidbody;
+    private SlimeAvatar avatar;
 
     private void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        avatar = GetComponent<SlimeAvatar>();
     }
 
 
@@ -37,9 +39,7 @@ public class SlimeController : MonoBehaviour
         // TODO : if the cube is less than goalThreshold from the goal, we teleport it and return true
         if ((transform.position - Goal).magnitude < goalThreshold)
         {
-            // TODO : move the color change to the Avatar
-            GetComponent<SpriteRenderer>().color = Color.grey;
-            return true;
+            avatar.Death();
         }
 
         return false;
