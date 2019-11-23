@@ -6,6 +6,7 @@ public class SlimeGenerator : MonoBehaviour
 {
     [SerializeField] private float spawnCooldown = 3.0f;
     private float spawnTimer;
+    public int ToGenerate;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class SlimeGenerator : MonoBehaviour
     {
         spawnTimer += Time.deltaTime;
 
-        if (spawnTimer >= spawnCooldown)
+        if (spawnTimer >= spawnCooldown && ToGenerate > 0)
         {
             GenerateSlime();
             spawnTimer = 0f;
@@ -31,10 +32,24 @@ public class SlimeGenerator : MonoBehaviour
         //slime.Goal = -transform.position;
         slime.GetNewGoal();
         //spawnTimer = 0.0f;
+        ToGenerate--;
+        if (ToGenerate == 0)
+        {
+            Derelict();
+        }
     }
 
     private void OnMouseDown()
     {
-        GenerateSlime();
+        if (ToGenerate > 0)
+        {
+            GenerateSlime();
+        }
+    }
+
+    void Derelict()
+    {
+        GetComponent<SpriteRenderer>().color = Color.gray;
+        Destroy(gameObject, 10.0f);
     }
 }

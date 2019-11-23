@@ -94,6 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCooldown: 3
+  ToGenerate: 10
 --- !u!65 &4331771712076394604
 BoxCollider:
   m_ObjectHideFlags: 0

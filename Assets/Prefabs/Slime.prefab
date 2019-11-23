@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   goal: {x: 0, y: 0, z: 0}
-  gravity: 0.2
+  gravity: 1
   goalThreshold: 0.2
 --- !u!61 &6124598608787583251
 BoxCollider2D:
