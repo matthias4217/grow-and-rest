@@ -13,6 +13,12 @@ public class SlimeController : MonoBehaviour
     [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
     private Vector3 currentSpeed =  Vector3.zero;
+    private Rigidbody2D rigidbody;
+
+    private void Start()
+    {
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
 
 
     // Update is called once per frame
@@ -44,6 +50,6 @@ public class SlimeController : MonoBehaviour
         Vector3 toGoal = (Goal - position).normalized;
         currentSpeed = speed * toGoal + gravity * (Vector3.zero - position).normalized;
         position = position + Time.deltaTime * currentSpeed;
-        transform.position = position;
+        rigidbody.MovePosition(position);
     }
 }
