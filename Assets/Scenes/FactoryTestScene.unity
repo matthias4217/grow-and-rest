@@ -362,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 1258463419772252106, guid: ca16094cdf82e004583a0950ba874ac5,
         type: 3}
       propertyPath: spawnCooldown
-      value: 3
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca16094cdf82e004583a0950ba874ac5, type: 3}
