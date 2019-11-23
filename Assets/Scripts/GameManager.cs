@@ -14,6 +14,7 @@ public class PlayerObserverEventArgs : EventArgs
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private float slimeSize = 0.16f;
     [SerializeField] private int nbrInterestPoints = 3;
     private bool _instantiated = false;
     public static GameManager Instance {get; private set; }
@@ -61,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public float GetRandomInterestPoint()
+    public Vector3 GetRandomInterestPoint()
     {
         int structIndex = Random.Range(0, structures.Count);
         Structure selectedStruct = structures[structIndex];
@@ -72,8 +73,11 @@ public class GameManager : MonoBehaviour
             AddStructure();
         }
         // TODO : rotate the struct
-        return selectedStruct.originAngle + EarthAvatar.Instance.GetAngle(new Vector3(selectedPoint.Item1,
-                   selectedPoint.Item2));
+        // TODO : scale to a slime size
+        float rotationAngle = selectedStruct.originAngle;
+        return EarthAvatar.Instance.GetUnityCoords(selectedStruct.originAngle)
+               + Quaternion.AngleAxis(rotationAngle, Vector3.back)
+               * new Vector3(selectedPoint.Item1 * slimeSize, selectedPoint.Item2 * slimeSize);
     }
 
     private void AddStructure()

@@ -12,6 +12,7 @@ public class SlimeController : MonoBehaviour
 
     [SerializeField] private float gravity = 0.5f;
     [SerializeField] private float goalThreshold = 1;
+    [SerializeField] private bool teleportToGoal = false;
     private Vector3 currentSpeed =  Vector3.zero;
     private Rigidbody2D rigidbody2d;
     private SlimeAvatar avatar;
@@ -28,6 +29,8 @@ public class SlimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (teleportToGoal)
+            TeleportToGoal();
         IsGoalReached();
     }
 
@@ -44,6 +47,7 @@ public class SlimeController : MonoBehaviour
         {
             rigidbody2d.velocity = Vector2.zero;
             transform.position = goal;
+            transform.rotation = Quaternion.AngleAxis(EarthAvatar.Instance.GetAngle(goal), Vector3.back);
             avatar.Death();
             return true;
         }
@@ -55,7 +59,13 @@ public class SlimeController : MonoBehaviour
     {
         // get a goal :
         // find random interest point
-        goal = EarthAvatar.Instance.GetUnityCoords(GameManager.Instance.GetRandomInterestPoint());
+        goal = GameManager.Instance.GetRandomInterestPoint();
+    }
+
+    private void TeleportToGoal()
+    {
+        transform.position = goal;
+        rigidbody2d.velocity = Vector2.zero;
     }
 
     private void MoveTowardsGoal()
