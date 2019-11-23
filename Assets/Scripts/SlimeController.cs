@@ -22,7 +22,8 @@ public class SlimeController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         avatar = GetComponent<SlimeAvatar>();
         gameManager = GameManager.Instance;
-        FindObjectOfType<GameManager>().PlayerObserver += this.PlayerSelectedGoal;
+        FindObjectOfType<GameManager>().PlayerMouseDownObserver += PlayerSelectedGoal;
+        FindObjectOfType<GameManager>().PlayerMouseUpObserver += PlayerUnSelectedGoal;
     }
 
     // Update is called once per frame
@@ -55,7 +56,7 @@ public class SlimeController : MonoBehaviour
     {
         // get a goal :
         // find random interest point
-        goal = EarthAvatar.Instance.GetUnityCoords(GameManager.Instance.GetRandomInterestPoint());
+        Goal = EarthAvatar.Instance.GetUnityCoords(GameManager.Instance.GetRandomInterestPoint());
     }
 
     private void MoveTowardsGoal()
@@ -75,6 +76,14 @@ public class SlimeController : MonoBehaviour
         if (avatar.State == SlimeState.Living)
         {
             Goal = (args as PlayerObserverEventArgs).Position;
+        }
+    }
+
+    public void PlayerUnSelectedGoal(object sender, EventArgs args)
+    {
+        if (avatar.State == SlimeState.Living)
+        {
+            GetNewGoal();
         }
     }
 }

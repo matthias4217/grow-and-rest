@@ -21,9 +21,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set; }
     private List<float> currentGoalList = new List<float>();
 
-    public event EventHandler PlayerObserver;
+    public event EventHandler PlayerMouseDownObserver;
 
-    public void OnPlayerClick(PlayerObserverEventArgs poea) => PlayerObserver?.Invoke(this, poea);
+    public void OnPlayerMouseDown(PlayerObserverEventArgs poea) => PlayerMouseDownObserver?.Invoke(this, poea);
+
+    public event EventHandler PlayerMouseUpObserver;
+
+    public void OnPlayerMouseUp() => PlayerMouseUpObserver?.Invoke(this, EventArgs.Empty);
 
     private void Awake()
     {
@@ -72,11 +76,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
             poea.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            OnPlayerClick(poea);
+            OnPlayerMouseDown(poea);
+        }
+        if (Input.GetButtonUp("Fire1"))
+        {
+            OnPlayerMouseUp();
         }
     }
 

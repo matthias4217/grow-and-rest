@@ -12,7 +12,7 @@ public class SlimeGenerator : MonoBehaviour
     void Start()
     {
         spawnTimer = 0.0f;
-        TreeDeathObserver.Subscribe(this);
+        DeathObserver.Subscribe(this);
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class SlimeGenerator : MonoBehaviour
     void Derelict()
     {
         GetComponent<SpriteRenderer>().color = Color.gray;
-        TreeDeathObserver.Unsubscribe(this);
+        DeathObserver.Unsubscribe(this);
         Destroy(gameObject, 10.0f);
     }
 }
