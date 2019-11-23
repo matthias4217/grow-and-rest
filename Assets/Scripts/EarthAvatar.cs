@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
     public class EarthAvatar : MonoBehaviour
     {
         private float _radius;
+        public bool isStarted = false;
         public static EarthAvatar Instance { get; private set; }
 
         private void Awake()
@@ -17,12 +18,13 @@ using Random = UnityEngine.Random;
             {
                 Destroy(gameObject);
             }
+
+            // we suppose the scale to be the same in X and Y
+            _radius = GetComponent<CircleCollider2D>().radius;
         }
 
         private void Start()
         {
-            // we suppose the scale to be the same in X and Y
-            _radius = GetComponent<CircleCollider2D>().radius;
             Debug.Log(GetUnityCoords(0));
             Debug.Log(GetAngle(new Vector3(0, _radius)));
             Debug.Log("Angle 10: " + GetUnityCoords(10f));
@@ -30,6 +32,7 @@ using Random = UnityEngine.Random;
             Debug.Log("Angle 10 to angle: " + GetAngle(GetUnityCoords(10f)));
             Debug.Log("Angle 180 to angle: " + GetAngle(GetUnityCoords(180f)));
             Debug.Log("Angle 90 to angle: " + GetAngle(GetUnityCoords(90f)));
+            isStarted = true;
         }
 
 

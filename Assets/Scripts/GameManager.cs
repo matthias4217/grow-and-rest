@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //while (!EarthAvatar.Instance.isStarted) {}
         for (int i = 0; i < nbrInterestPoints; i++)
         {
             //currentGoalList.Add(EarthAvatar.Instance.GetRandomAngle());
