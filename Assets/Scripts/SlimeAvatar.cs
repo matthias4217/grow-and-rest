@@ -45,6 +45,7 @@ public class SlimeAvatar : MonoBehaviour
         State = SlimeState.Dead;
         spriteRenderer.color = Color.grey;
         rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb2d.simulated = false;
     }
 
     public void ResetState()

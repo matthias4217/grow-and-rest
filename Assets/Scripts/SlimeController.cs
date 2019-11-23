@@ -43,7 +43,7 @@ public class SlimeController : MonoBehaviour
         if ((transform.position - Goal).magnitude < goalThreshold)
         {
             rigidbody2d.velocity = Vector2.zero;
-            rigidbody2d.MovePosition(goal);
+            transform.position = goal;
             avatar.Death();
             return true;
         }
