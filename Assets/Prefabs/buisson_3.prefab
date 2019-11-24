@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2135915427393117474}
   - component: {fileID: 3371879380676757124}
   - component: {fileID: 4176666178343442387}
+  - component: {fileID: 339757138823769609}
   m_Layer: 0
   m_Name: buisson_3
   m_TagString: Untagged
@@ -121,3 +122,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCooldown: 1
   ToGenerate: 4
+--- !u!95 &339757138823769609
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183973983353153506}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cc9d1c8d6ec079546b3de24956529348, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
