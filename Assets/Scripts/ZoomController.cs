@@ -18,7 +18,7 @@ public class ZoomController : MonoBehaviour
 
     private bool triggerAudio;
 
-    public GameObject fader;
+    public Fade fader;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +59,7 @@ public class ZoomController : MonoBehaviour
 
     public void startZoom()
     {
-        fader.GetComponent<Fade>().StartFade();
+        fader.StartFade();
         isAllowedToZoom = true;
         resetTime();
         introAudio.Play();
