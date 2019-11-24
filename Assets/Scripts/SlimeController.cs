@@ -105,7 +105,10 @@ public class SlimeController : MonoBehaviour
 
         if (avatar.State == SlimeState.Living)
         {
-            Goal = (args as PlayerObserverEventArgs).Position;
+            gameManager.GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(
+                (args as PlayerObserverEventArgs).Position));
+            (int, int) point = gameManager.currentPlayerStructure.GetRandomAvailablePoint();
+            Goal = new Vector3(point.Item1, point.Item2);
         }
     }
 
