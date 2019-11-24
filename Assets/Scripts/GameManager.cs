@@ -258,6 +258,9 @@ public class GameManager : MonoBehaviour
             case (int) StructureChoice.Dolmen:
                 resStruct = Structure.GetDolmen();
                 break;
+            case (int) StructureChoice.LittleTree:
+                resStruct = Structure.GetLittleTree();
+                break;
             default:
                 throw new Exception("Out of range !");
 
