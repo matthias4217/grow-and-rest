@@ -120,8 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f024ae22e1f2ba742a60441166c9f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 1
-  ToGenerate: 4
+  spawnCooldown: 5
+  ToGenerate: 6
 --- !u!95 &339757138823769609
 Animator:
   serializedVersion: 3

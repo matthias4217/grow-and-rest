@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f024ae22e1f2ba742a60441166c9f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 4
-  ToGenerate: 5
+  spawnCooldown: 8
+  ToGenerate: 8
 --- !u!61 &3523645797036201341
 BoxCollider2D:
   m_ObjectHideFlags: 0

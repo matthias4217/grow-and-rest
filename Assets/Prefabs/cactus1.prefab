@@ -119,5 +119,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f024ae22e1f2ba742a60441166c9f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 7
-  ToGenerate: 2
+  spawnCooldown: 10
+  ToGenerate: 4

@@ -48,7 +48,7 @@ public class SlimeController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        rigidbody2d.AddForce(-500.0f * gravity * (Vector3.zero - transform.position).normalized);
+        rigidbody2d.AddForce(-1500.0f * gravity * (Vector3.zero - transform.position).normalized);
     }
 
     public bool IsGoalReached()

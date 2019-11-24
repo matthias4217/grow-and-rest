@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   goal: {x: 0, y: 0, z: 0}
-  gravity: 1
+  gravity: 0.5
   goalThreshold: 0.2
   teleportToGoal: 0
 --- !u!61 &6124598608787583251
