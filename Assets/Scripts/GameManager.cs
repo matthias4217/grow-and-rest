@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
 
         EasyStructures = new List<StructureChoice>();
         EasyStructures.Add(StructureChoice.Dolmen);
+        EasyStructures.Add(StructureChoice.LittleTree);
 
     }
 

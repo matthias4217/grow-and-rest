@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 
 public enum StructureChoice {
     Dolmen,
+    LittleTree,
     Gateway,
     Guillotine,
     Statue,
@@ -82,8 +83,30 @@ public class Structure
         return dolmen;
     }
 
+    public static Structure GetLittleTree()
+    {
+        Structure structure = new Structure();
+        structure.points = new[] {(4,0),
+            (2,1),
+            (3,1),
+            (4,1),
+            (5,1),
+            (6,1),
+            (4,2),
+            (3,3),
+            (4,3),
+            (5,3),
+            (4,4)
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < 7; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Easy;
+        return structure;
+    }
 
-    // TODO !!!
+
     public static Structure GetGateway()
     {
         Structure structure = new Structure();
