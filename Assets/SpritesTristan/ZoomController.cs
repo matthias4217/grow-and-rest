@@ -6,13 +6,19 @@ public class ZoomController : MonoBehaviour
 {
     private Camera cam;
 
-    public bool isAllowedToZoom;
+    private bool isAllowedToZoom;
     private int direction;
 
     [SerializeField] float targetCameraSize;
     [SerializeField] float speed;
 
     private float timeOnStartMove;
+
+    public AudioSource introAudio;
+
+    private bool triggerAudio;
+
+    public GameObject fader;
 
     // Start is called before the first frame update
     void Start()
@@ -44,11 +50,6 @@ public class ZoomController : MonoBehaviour
                 cam.orthographicSize += f * direction;
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            startZoom();
-        }
     }
 
     void resetTime()
@@ -56,10 +57,12 @@ public class ZoomController : MonoBehaviour
         timeOnStartMove = Time.fixedTime;
     }
 
-    void startZoom()
+    public void startZoom()
     {
+        fader.GetComponent<Fade>().StartFade();
         isAllowedToZoom = true;
         resetTime();
+        introAudio.Play();
     }
 
 }
