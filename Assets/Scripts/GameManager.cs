@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private Structure currentPlayerBlueprint = Structure.GetDolmen();
     private Image currentBlueprintImage;
 
-    public List<StructureChoice> EasyStructures = new List<StructureChoice>();
+    private List<StructureChoice> EasyStructures;
 
     public static GameManager Instance {get; private set; }
     //private List<float> currentGoalList = new List<float>();
@@ -84,22 +84,22 @@ public class GameManager : MonoBehaviour
         advancedStructures.AddLast(StructureChoice.Temple2);
         advancedStructures.AddLast(StructureChoice.Torii);
 
+        EasyStructures = new List<StructureChoice>();
         EasyStructures.Add(StructureChoice.Dolmen);
 
 
     }
 
-    // Start is called before the first frame update
     public void StartGame()
     {
-        var canvasImages = Canvas.FindObjectsOfType<Image>();
+        /*var canvasImages = Canvas.FindObjectsOfType<Image>();
         foreach (var image in canvasImages)
         {
             if (image.name == "Current Blueprint")
                 currentBlueprintImage = image;
         }
 
-        currentBlueprintImage.sprite = torii;
+        currentBlueprintImage.sprite = torii;*/
         zoomer.startZoom();
         for (int i = 0; i < nbrInterestPoints; i++)
         {
@@ -118,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public Tuple<Vector3, Structure> GetRandomInterestPoint()
     {
+        Debug.Log("Available struct count " + availableStructures.Count);
         int structIndex = Random.Range(0, availableStructures.Count);
         Structure selectedStruct = availableStructures[structIndex];
         var selectedPoint = selectedStruct.GetRandomAvailablePoint();
@@ -138,6 +139,7 @@ public class GameManager : MonoBehaviour
 
     private void AddStructure()
     {
+        Debug.Log("Easy struc : " + EasyStructures.Count);
         int choice = Random.Range(0, (int) EasyStructures.Count);
         Structure resStruct;
         switch (choice)

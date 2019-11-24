@@ -52,3 +52,9 @@ MonoBehaviour:
   - {fileID: 2933015644487615052, guid: 6935dbd1cff520b4789024cc64df44d0, type: 3}
   - {fileID: 8245705598036751776, guid: 0a5ea475226770f4fad8ae4c964da3d2, type: 3}
   - {fileID: 9204254248939808762, guid: 8b061000b7f291d4686157007ad71c13, type: 3}
+  torii: {fileID: 21300000, guid: 5dfdedc6ec50f6d4bbba8ab76bf8a372, type: 3}
+  temple2: {fileID: 21300000, guid: b0fc63687cf7e625e8627cf0ddd00ac5, type: 3}
+  statue: {fileID: 21300000, guid: 32514d8662c1d6cb3afbb0005f6b38e4, type: 3}
+  guillotine: {fileID: 21300000, guid: c9b9f3430a921cc828833d5f70096b9d, type: 3}
+  gateway: {fileID: 21300000, guid: da9e7c9d679d6a2e6ae5b26e8df08be8, type: 3}
+  EasyStructures: 

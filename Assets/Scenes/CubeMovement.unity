@@ -603,22 +603,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4101236697886270286, guid: c9bd69542699a775685aef9eae4398f2,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 371c421894ab49d1193e576d0cff7b39,
-        type: 3}
-    - target: {fileID: 4101236697886270286, guid: c9bd69542699a775685aef9eae4398f2,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4101236697886270286, guid: c9bd69542699a775685aef9eae4398f2,
-        type: 3}
-      propertyPath: m_UseSpriteMesh
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9bd69542699a775685aef9eae4398f2, type: 3}
 --- !u!1001 &4240262746845201561
