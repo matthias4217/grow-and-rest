@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour
 
     private static ZoomController zoomer;
 
+    [SerializeField] private float startTime;
+    private float startTimer;
+    private bool generating = false;
+
     private void Awake()
     {
         if (_instantiated)
@@ -103,6 +107,12 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         zoomer.startZoom();
+        startTimer = 0.0f;
+        generating = true;
+    }
+
+    public void PrepareTerrain()
+    {
         for (int i = 0; i < nbrInterestPoints; i++)
         {
             AddStructure();
@@ -260,6 +270,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             OnPlayerMouseUp();
+        }
+
+        if (generating && startTimer >= startTime)
+        {
+            PrepareTerrain();
+            generating = false;
+        }
+        else
+        {
+            startTimer += Time.deltaTime;
         }
     }
 
