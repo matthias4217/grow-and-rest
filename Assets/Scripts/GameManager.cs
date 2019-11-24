@@ -17,7 +17,7 @@ public class PlayerObserverEventArgs : EventArgs
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private float slimeSize = 0.17f;
+    [SerializeField] public float slimeSize = 0.17f;
     [SerializeField] private int nbrInterestPoints = 3;
     [SerializeField] private int nbrTrees;
     public int MaxTrees = 5;
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (!wasMousePressed)
+            if (!wasMousePressed && !restarting && !generating)
                 GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
             poea.Position = mousePosition;

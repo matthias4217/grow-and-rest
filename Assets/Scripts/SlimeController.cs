@@ -105,8 +105,19 @@ public class SlimeController : MonoBehaviour
 
         if (avatar.State == SlimeState.Living)
         {
+
             (int, int) point = gameManager.currentPlayerStructure.GetRandomAvailablePoint();
-            Goal = new Vector3(point.Item1, point.Item2);
+            float rotationAngle = gameManager.currentPlayerStructure.originAngle;
+
+            if (gameManager.currentPlayerStructure.IsStructFull())
+            {
+                // TODO :
+                gameManager.GetNewPlayerStructure(EarthAvatar.Instance.GetRandomAngle());
+            }
+            Goal = EarthAvatar.Instance.GetUnityCoords(gameManager.currentPlayerStructure.originAngle)
+                + Quaternion.AngleAxis(rotationAngle, Vector3.back)
+                * new Vector3(point.Item1 * gameManager.slimeSize, point.Item2 * gameManager.slimeSize);
+            //Goal = new Vector3(point.Item1, point.Item2);
         }
     }
 
