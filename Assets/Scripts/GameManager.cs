@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
 
     StructureChoice[] advancedStructures = new StructureChoice[5];
     private int currentPlayerBlueprint = 0;
-    private StructureChoice currentPlayerStructure = StructureChoice.Torii;
+    private StructureChoice currentPlayerStrucEnum = StructureChoice.Torii;
+    public Structure currentPlayerStructure;
 
     // we must have a pointer on this
     private bool _instantiated = false;
@@ -168,7 +169,7 @@ public class GameManager : MonoBehaviour
         Button button = FindButton("Blueprint " + 1);
         button.image.sprite = toriiHover;
         currentPlayerBlueprint = 1;
-        currentPlayerStructure = StructureChoice.Torii;
+        currentPlayerStrucEnum = StructureChoice.Torii;
     }
     public void SelectBlueprint2()
     {
@@ -180,7 +181,7 @@ public class GameManager : MonoBehaviour
         Button button = FindButton("Blueprint " + 2);
         button.image.sprite = temple2Hover;
         currentPlayerBlueprint = 2;
-        currentPlayerStructure = StructureChoice.Temple2;
+        currentPlayerStrucEnum = StructureChoice.Temple2;
     }
     public void SelectBlueprint3()
     {
@@ -192,7 +193,7 @@ public class GameManager : MonoBehaviour
         Button button = FindButton("Blueprint " + 3);
         button.image.sprite = statueHover;
         currentPlayerBlueprint = 3;
-        currentPlayerStructure = StructureChoice.Statue;
+        currentPlayerStrucEnum = StructureChoice.Statue;
     }
     public void SelectBlueprint4()
     {
@@ -204,7 +205,7 @@ public class GameManager : MonoBehaviour
         Button button = FindButton("Blueprint " + 4);
         button.image.sprite = guillotineHover;
         currentPlayerBlueprint = 1;
-        currentPlayerStructure = StructureChoice.Guillotine;
+        currentPlayerStrucEnum = StructureChoice.Guillotine;
     }
     public void SelectBlueprint5()
     {
@@ -216,7 +217,7 @@ public class GameManager : MonoBehaviour
         Button button = FindButton("Blueprint " + 5);
         button.image.sprite = gatewayHover;
         currentPlayerBlueprint = 1;
-        currentPlayerStructure = StructureChoice.Gateway;
+        currentPlayerStrucEnum = StructureChoice.Gateway;
     }
 
     public Tuple<Vector3, Structure> GetRandomInterestPoint()
@@ -240,9 +241,26 @@ public class GameManager : MonoBehaviour
             );
     }
 
+    public void GetNewPlayerStructure(float angle)
+    {
+        StructureChoice choice = currentPlayerStrucEnum;
+        switch (choice)
+        {
+            case StructureChoice.Gateway:
+                currentPlayerStructure = Structure.GetGateway();
+                break;
+            case StructureChoice.Guillotine:
+                currentPlayerStructure = Structure.GetGuillotine();
+                break;
+            default: break;
+        }
+
+        currentPlayerStructure.originAngle = angle;
+    }
+
     private void AddStructure()
     {
-        Debug.Log("Easy struc : " + EasyStructures.Count);
+        //Debug.Log("Easy struc : " + EasyStructures.Count);
         int choice = Random.Range(0, (int) EasyStructures.Count);
         Structure resStruct;
         switch (choice)
