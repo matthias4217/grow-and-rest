@@ -301,8 +301,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
-            poea.Position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            poea.Position = mousePosition;
             OnPlayerMouseDown(poea);
         }
         if (Input.GetButtonUp("Fire1"))
