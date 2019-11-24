@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     private int currentPlayerBlueprint = 0;
     private StructureChoice currentPlayerStrucEnum = StructureChoice.Torii;
     public Structure currentPlayerStructure;
+    private bool wasMousePressed = false;
 
     // we must have a pointer on this
     private bool _instantiated = false;
@@ -302,10 +303,16 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
+            if (!wasMousePressed)
+                GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
             poea.Position = mousePosition;
             OnPlayerMouseDown(poea);
+            wasMousePressed = true;
+        }
+        else
+        {
+            wasMousePressed = false;
         }
         if (Input.GetButtonUp("Fire1"))
         {

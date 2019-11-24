@@ -45,7 +45,21 @@ public class Structure
     {
         if (IsStructFull())
             throw new Exception("No available point found !");
-        int pointIndex = availablePoints[Random.Range(0, availablePoints.Count)];
+        List<(int, int)> selectedPoints = new List<(int, int)>();
+        int strata = 0;
+        foreach (var indexP in availablePoints)
+        {
+            var p = points[indexP];
+            if (selectedPoints.Count == 0 || p.Item2 == strata)
+                selectedPoints.Add(p);
+            if (p.Item2 < strata)
+            {
+                selectedPoints = new List<(int, int)>();
+                selectedPoints.Add(p);
+                strata = p.Item2;
+            }
+        }
+        int pointIndex = availablePoints[Random.Range(0, selectedPoints.Count)];
         availablePoints.Remove(pointIndex);
         return points[pointIndex];
     }
