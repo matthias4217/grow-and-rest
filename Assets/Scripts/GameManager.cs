@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerMouseUp() => PlayerMouseUpObserver?.Invoke(this, EventArgs.Empty);
 
+    private static ZoomController zoomer;
+
     private void Awake()
     {
         if (_instantiated)
@@ -57,15 +59,17 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         Application.targetFrameRate = 60;
-
+        zoomer = FindObjectOfType<ZoomController>();
         Random.InitState((int) System.DateTime.Now.Ticks);
 
 
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
+        zoomer.startZoom();
+
         for (int i = 0; i < nbrInterestPoints; i++)
         {
             AddStructure();
