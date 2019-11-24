@@ -32,15 +32,6 @@ public class SlimeAvatar : MonoBehaviour
         DeathObserver.Subscribe(this);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_controller.IsGoalReached())
-        {
-            state = SlimeState.Dead;
-        }
-    }
-
     public void Death()
     {
         State = SlimeState.Dead;
