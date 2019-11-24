@@ -8,8 +8,10 @@ public class ZoomController : MonoBehaviour
 
     private bool isAllowedToZoom;
     private int direction;
+    public int Direction { get => direction; set => direction = value; }
 
     [SerializeField] float targetCameraSize;
+    [SerializeField] float minCameraSize;
     [SerializeField] float speed;
 
     private float timeOnStartMove;
@@ -19,6 +21,7 @@ public class ZoomController : MonoBehaviour
     private bool triggerAudio;
 
     public Fade fader;
+    private bool zooming;
 
     // Start is called before the first frame update
     void Start()
@@ -32,22 +35,45 @@ public class ZoomController : MonoBehaviour
     {
         if(isAllowedToZoom)
         {
-            if(cam.orthographicSize < 2.5)
+            if (!zooming)
             {
-                float x = Time.fixedTime - timeOnStartMove;
-                float f = Mathf.Pow(x, 3) * Time.deltaTime * speed;
-                cam.orthographicSize += f * direction;
-            }
-            else if(cam.orthographicSize > targetCameraSize)
-            {
-                cam.orthographicSize = targetCameraSize;
-                isAllowedToZoom = false;
+                if (cam.orthographicSize < 2.5)
+                {
+                    float x = Time.fixedTime - timeOnStartMove;
+                    float f = Mathf.Pow(x, 3) * Time.deltaTime * speed;
+                    cam.orthographicSize += f * Direction;
+                }
+                else if (cam.orthographicSize > targetCameraSize)
+                {
+                    cam.orthographicSize = targetCameraSize;
+                    isAllowedToZoom = false;
+                }
+                else
+                {
+                    float x = Time.fixedTime - timeOnStartMove + 0.001f;
+                    float f = 1 / x * Time.deltaTime * 10;
+                    cam.orthographicSize += f * Direction;
+                }
             }
             else
             {
-                float x = Time.fixedTime - timeOnStartMove + 0.001f;
-                float f = 1 / x * Time.deltaTime * 10;
-                cam.orthographicSize += f * direction;
+                if (cam.orthographicSize > 3.5)
+                {
+                    float x = Time.fixedTime - timeOnStartMove;
+                    float f = Mathf.Pow(x, 3) * Time.deltaTime * speed * 2.0f;
+                    cam.orthographicSize += f * Direction;
+                }
+                else if (cam.orthographicSize < minCameraSize)
+                {
+                    cam.orthographicSize = minCameraSize;
+                    isAllowedToZoom = false;
+                }
+                else
+                {
+                    float x = Time.fixedTime - timeOnStartMove + 0.001f;
+                    float f = 1 / x * Time.deltaTime * 15.0f;
+                    cam.orthographicSize += f * Direction;
+                }
             }
         }
     }
@@ -59,6 +85,7 @@ public class ZoomController : MonoBehaviour
 
     public void startZoom()
     {
+        zooming = (Direction < 0);
         fader.StartFade();
         isAllowedToZoom = true;
         resetTime();

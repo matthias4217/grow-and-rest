@@ -51,7 +51,18 @@ MonoBehaviour:
   TreePrefab:
   - {fileID: 2933015644487615052, guid: 6935dbd1cff520b4789024cc64df44d0, type: 3}
   - {fileID: 8245705598036751776, guid: 0a5ea475226770f4fad8ae4c964da3d2, type: 3}
+  - {fileID: 8933090365886204723, guid: a8edaab60b21cb949977fa15e4110d93, type: 3}
+  - {fileID: 1258463420459045122, guid: ca16094cdf82e004583a0950ba874ac5, type: 3}
+  - {fileID: 3767931193264207065, guid: cae38d2a64d02d7449b8e92226d41d12, type: 3}
   - {fileID: 9204254248939808762, guid: 8b061000b7f291d4686157007ad71c13, type: 3}
+  - {fileID: 8957339745769979214, guid: a314ea7e5e656fa4196186210c1febdb, type: 3}
+  - {fileID: 4375512190031854532, guid: 9e95e0538eaef6f4c8a3a70716c35a16, type: 3}
+  - {fileID: 2503334297123943056, guid: 3fbe536235d657443847356d3b18fd1f, type: 3}
+  - {fileID: 2209296548626777257, guid: 36b821c852991a043a753bbc90c9adb9, type: 3}
+  - {fileID: 5766433043154926412, guid: 7930e0b8ce2fa3244861bb95848a39cc, type: 3}
+  - {fileID: 9104860789525401667, guid: 18dc9b5089083eb4ea34de0a8ef84eda, type: 3}
+  - {fileID: 8183973983353153506, guid: 7d1482886bcb5e34999cee26fdf2b086, type: 3}
+  - {fileID: 998565223919045546, guid: 792cb5d6562c0834ab0856e1b21aa6ed, type: 3}
   torii: {fileID: 21300000, guid: fe022baa674b20f0085da4f7386eaeff, type: 3}
   temple2: {fileID: 21300000, guid: fde244bb19eb1f89bbddf9bc5a0fa618, type: 3}
   statue: {fileID: 21300000, guid: d478346ef1f2ca9708429b8fa7eca066, type: 3}
@@ -62,3 +73,5 @@ MonoBehaviour:
   statueHover: {fileID: 21300000, guid: 914598c904445448cafebe5b5fe92a58, type: 3}
   guillotineHover: {fileID: 21300000, guid: e99f11c3df5bd416ea0135611b7e233d, type: 3}
   gatewayHover: {fileID: 21300000, guid: d8676372245dbafddb09ffc6fc80b10c, type: 3}
+  startTime: 50
+  ui: {fileID: 0}

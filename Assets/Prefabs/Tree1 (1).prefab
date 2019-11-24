@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6846135281164617220}
   - component: {fileID: 1966138870738403551}
   - component: {fileID: 352123332830359280}
+  - component: {fileID: 6128678589655021486}
   m_Layer: 0
   m_Name: Tree1 (1)
   m_TagString: Untagged
@@ -121,3 +122,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnCooldown: 6
   ToGenerate: 5
+--- !u!95 &6128678589655021486
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933090365886204723}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b94edc7de94e364b9e5bbc330dc87d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
