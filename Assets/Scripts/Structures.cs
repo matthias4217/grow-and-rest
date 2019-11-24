@@ -6,11 +6,24 @@ using System;
 using Random = UnityEngine.Random;
 
 
-enum StructureChoice {
+public enum StructureChoice {
     Dolmen,
+    Gateway,
     Guillotine,
+    Statue,
+    Temple2,
+    Torii,
     StructureChoiceSize
 }
+
+public enum StructureType
+{
+    Easy,
+    Medium,
+    Advanced
+}
+
+
 
 public class Structure
 {
@@ -18,6 +31,9 @@ public class Structure
     public (int, int)[] points;
     public List<int> availablePoints;
     public Vector2 size = Vector2.zero;
+    public StructureType type;
+
+
 
 
     public bool IsStructFull()
@@ -62,9 +78,31 @@ public class Structure
         for (int i = 0; i < 7; i++)
             dolmen.availablePoints.Add(i);
         dolmen.GetSize();
+        dolmen.type = StructureType.Easy;
         return dolmen;
     }
 
+
+    public static Structure GetGateway()
+    {
+        Structure structure = new Structure();
+        structure.points = new[]
+        {
+            (1,0), (2,0), (3,0), (4,0), (5,0), (6,0), (7,0), (9,0),
+            (2,1), (3,1), (4,1), (5,1), (6,1), (7,1),
+            (3,2), (6,2),
+            (3,3), (6,3),
+            (3,4), (4,4), (6,4),
+            (3,5), (4,5), (5,5), (6,5),
+            (3,6), (4,6), (5,6), (6,6)
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Advanced;
+        return structure;
+    }
 
     public static Structure GetGuillotine()
     {
@@ -83,6 +121,7 @@ public class Structure
         for (int i = 0; i < guillotine.points.Length; i++)
             guillotine.availablePoints.Add(i);
         guillotine.GetSize();
+        guillotine.type = StructureType.Advanced;
         return guillotine;
     }
 }
