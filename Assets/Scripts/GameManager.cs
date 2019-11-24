@@ -104,6 +104,7 @@ public class GameManager : MonoBehaviour
         }
 
         currentBlueprintImage.sprite = torii;*/
+        zoomer.Direction = 1;
         zoomer.startZoom();
         startTimer = 0.0f;
         generating = true;
@@ -205,5 +206,7 @@ public class GameManager : MonoBehaviour
     {
         // TODO : End game
         Debug.Log("End of the game");
+        zoomer.Direction = -1;
+        zoomer.startZoom();
     }
 }
