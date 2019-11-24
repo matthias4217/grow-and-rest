@@ -20,4 +20,9 @@ public class StartButtonController : MonoBehaviour
         buttonSound.Play();
         buttonSound.Stop();
     }
+
+    public void MyJobIsDone()
+    {
+        gameObject.SetActive(false);
+    }
 }
