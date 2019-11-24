@@ -11,6 +11,8 @@ public class SlimeFactory : MonoBehaviour
 
     private static Queue<SlimeAvatar> _availableSlimes = new Queue<SlimeAvatar>();
 
+    public static Color color;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -40,6 +42,7 @@ public class SlimeFactory : MonoBehaviour
         }
 
         slime.gameObject.SetActive(true);
+        slime.GetComponent<SpriteRenderer>().color = color;
         slime.transform.position = spawnPosition;
         return slime;
     }

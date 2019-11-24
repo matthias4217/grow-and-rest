@@ -342,11 +342,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4240262748299408809, guid: 7cfb6099eca5792a1a44fce7e5887d23,
         type: 3}
-      propertyPath: startButton
-      value: 
-      objectReference: {fileID: 1945168152}
-    - target: {fileID: 4240262748299408809, guid: 7cfb6099eca5792a1a44fce7e5887d23,
-        type: 3}
       propertyPath: ui
       value: 
       objectReference: {fileID: 1884313672}
@@ -1023,11 +1018,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2244726225797342132, guid: a0971a4b7fc62e8498406383b9299562,
-        type: 3}
-      propertyPath: speed
-      value: 0.000003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0971a4b7fc62e8498406383b9299562, type: 3}

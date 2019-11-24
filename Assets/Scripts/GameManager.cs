@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
     private bool restarting = false;
     public Canvas ui;
 
+    public Color[] colors = { new Color(230.0f / 256.0f, 214.0f / 256.0f, 17.0f / 256.0f), new Color(224.0f / 256.0f, 13.0f / 256.0f, 45.0f / 256.0f), new Color(16.0f / 256.0f, 136.0f / 256.0f, 222.0f / 256.0f), new Color(207.0f / 256.0f, 27.0f / 256.0f, 182.0f / 256.0f), new Color(162.0f / 256.0f, 230.0f / 256.0f, 27.0f / 256.0f), new Color(256.0f / 256.0f, 170.0f / 256.0f, 209.0f / 256.0f) };
+
     private void Awake()
     {
         if (_instantiated)
@@ -108,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        SlimeFactory.color = colors[Random.Range(0, 6)];
         zoomer.Direction = 1;
         zoomer.startZoom();
         startTimer = 0.0f;
