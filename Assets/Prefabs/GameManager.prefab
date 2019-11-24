@@ -45,16 +45,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeSize: 0.16
   nbrInterestPoints: 3
-  nbrTrees: 0
+  nbrTrees: 6
   MaxTrees: 15
   MinTrees: 5
   TreePrefab:
   - {fileID: 2933015644487615052, guid: 6935dbd1cff520b4789024cc64df44d0, type: 3}
   - {fileID: 8245705598036751776, guid: 0a5ea475226770f4fad8ae4c964da3d2, type: 3}
   - {fileID: 9204254248939808762, guid: 8b061000b7f291d4686157007ad71c13, type: 3}
-  torii: {fileID: 21300000, guid: 5dfdedc6ec50f6d4bbba8ab76bf8a372, type: 3}
-  temple2: {fileID: 21300000, guid: b0fc63687cf7e625e8627cf0ddd00ac5, type: 3}
-  statue: {fileID: 21300000, guid: 32514d8662c1d6cb3afbb0005f6b38e4, type: 3}
-  guillotine: {fileID: 21300000, guid: c9b9f3430a921cc828833d5f70096b9d, type: 3}
-  gateway: {fileID: 21300000, guid: da9e7c9d679d6a2e6ae5b26e8df08be8, type: 3}
-  EasyStructures: 
+  torii: {fileID: 21300000, guid: fe022baa674b20f0085da4f7386eaeff, type: 3}
+  temple2: {fileID: 21300000, guid: fde244bb19eb1f89bbddf9bc5a0fa618, type: 3}
+  statue: {fileID: 21300000, guid: d478346ef1f2ca9708429b8fa7eca066, type: 3}
+  guillotine: {fileID: 21300000, guid: 4cb3d535ba2149dfab01ce7148178268, type: 3}
+  gateway: {fileID: 21300000, guid: 0492c506bea92bc63b12ae2e03d51a6a, type: 3}
+  toriiHover: {fileID: 21300000, guid: 9c41464c739afded9b58417f6abb26f5, type: 3}
+  temple2Hover: {fileID: 21300000, guid: 18402cb1e5432de0ab0479b35707eade, type: 3}
+  statueHover: {fileID: 21300000, guid: 914598c904445448cafebe5b5fe92a58, type: 3}
+  guillotineHover: {fileID: 21300000, guid: e99f11c3df5bd416ea0135611b7e233d, type: 3}
+  gatewayHover: {fileID: 21300000, guid: d8676372245dbafddb09ffc6fc80b10c, type: 3}
