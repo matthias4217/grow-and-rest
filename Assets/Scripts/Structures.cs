@@ -89,13 +89,14 @@ public class Structure
         Structure structure = new Structure();
         structure.points = new[]
         {
-            (1,0), (2,0), (3,0), (4,0), (5,0), (6,0), (7,0), (9,0),
-            (2,1), (3,1), (4,1), (5,1), (6,1), (7,1),
-            (3,2), (6,2),
-            (3,3), (6,3),
-            (3,4), (4,4), (6,4),
-            (3,5), (4,5), (5,5), (6,5),
-            (3,6), (4,6), (5,6), (6,6)
+            (3,0), (4,0), (5,0), (6,0),
+            (2,1), (3,1), (6,1), (7,1),
+            (1,2), (2,2), (7,2), (8,2),
+            (1,3), (8,3),
+            (1,4), (8,4),
+            (1,5), (2,5), (7,5), (8,5),
+            (2,6), (3,6), (6,6), (7,6),
+            (3,7), (4,7), (5,7), (6,7)
         };
         structure.availablePoints = new List<int>();
         for (int i = 0; i < structure.points.Length; i++)
@@ -124,5 +125,70 @@ public class Structure
         guillotine.GetSize();
         guillotine.type = StructureType.Advanced;
         return guillotine;
+    }
+
+    public static Structure GetStatue()
+    {
+        Structure structure = new Structure();
+        structure.points = new[]
+        {
+            (2,0), (3,0), (4,0), (5,0), (6,0),
+            (2,1), (3,1), (4,1), (5,1), (6,1),
+            (4,2),
+            (3,3), (4,3), (5,3),
+            (2,4), (3,4), (4,4), (5,4), (6,4),
+            (3,5), (4,5), (5,5),
+            (4,6)
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Advanced;
+        return structure;
+    }
+
+    public static Structure GetTemple2()
+    {
+        Structure structure = new Structure();
+        structure.points = new[]
+        {
+            (0,0), (1,0), (2,0), (3,0), (4,0), (5,0), (6,0), (7,0), (8,0), (9,0),
+            (1,1), (3,1), (6,1), (8,1),
+            (1,2), (3,2), (6,2), (8,2),
+            (1,3), (3,3), (6,3), (8,3),
+            (1,4), (3,4), (6,4), (8,4),
+            (0,5), (1,5), (2,5), (3,5), (4,5), (5,5), (6,5), (7,5), (8,5), (9,5),
+            (1,6), (2,6), (3,6), (4,6), (5,6), (6,6), (7,6), (8,6),
+            (2,7), (3,7), (4,7), (5,7), (6,7), (7,7),
+            (3,8), (4,8), (5,8), (6,8)
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Advanced;
+        return structure;
+    }
+
+    public static Structure GetTorii()
+    {
+        Structure structure = new Structure();
+        structure.points = new[]
+        {
+            (3,0), (7,0),
+            (3,1), (7,1),
+            (3,2), (7,2),
+            (1,3), (2,3), (3,3), (4,3), (5,3), (6,3), (7,3), (8,3), (9,3),
+            (2,4), (5,4), (8,4),
+            (1,5), (2,5), (3,5), (4,5), (5,5), (6,5), (7,5), (8,5), (9,5),
+            (1,6), (9,6),
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Advanced;
+        return structure;
     }
 }
