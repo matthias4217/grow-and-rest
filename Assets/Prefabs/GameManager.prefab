@@ -73,7 +73,7 @@ MonoBehaviour:
   statueHover: {fileID: 21300000, guid: 914598c904445448cafebe5b5fe92a58, type: 3}
   guillotineHover: {fileID: 21300000, guid: e99f11c3df5bd416ea0135611b7e233d, type: 3}
   gatewayHover: {fileID: 21300000, guid: d8676372245dbafddb09ffc6fc80b10c, type: 3}
-  startTime: 40
+  startTime: 30
   ui: {fileID: 0}
   colors:
   - {r: 0.8984375, g: 0.8359375, b: 0.06640625, a: 1}

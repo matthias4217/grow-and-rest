@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f024ae22e1f2ba742a60441166c9f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnCooldown: 8
-  ToGenerate: 1
+  spawnCooldown: 14
+  ToGenerate: 6
 --- !u!61 &5913028940453250906
 BoxCollider2D:
   m_ObjectHideFlags: 0
