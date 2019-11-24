@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerMouseUp() => PlayerMouseUpObserver?.Invoke(this, EventArgs.Empty);
 
+    private static ZoomController zoomer;
+
     private void Awake()
     {
         if (_instantiated)
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
         Application.targetFrameRate = 60;
-
+        zoomer = FindObjectOfType<ZoomController>();
         Random.InitState((int) System.DateTime.Now.Ticks);
 
         advancedStructures.AddLast(StructureChoice.Gateway);
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
         var canvasImages = Canvas.FindObjectsOfType<Image>();
         foreach (var image in canvasImages)
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
         }
 
         currentBlueprintImage.sprite = torii;
+        zoomer.startZoom();
         for (int i = 0; i < nbrInterestPoints; i++)
         {
             AddStructure();
