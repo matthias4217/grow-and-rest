@@ -32,7 +32,8 @@ public class SlimeController : MonoBehaviour
     {
         if (teleportToGoal)
             TeleportToGoal();
-        IsGoalReached();
+        if (avatar.State == SlimeState.Living)
+            IsGoalReached();
     }
 
     private void FixedUpdate()

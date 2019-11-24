@@ -54,20 +54,22 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+        Application.targetFrameRate = 60;
+
         Random.InitState((int) System.DateTime.Now.Ticks);
 
-        nbrTrees = Random.Range(MinTrees, MaxTrees);
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //while (!EarthAvatar.Instance.isStarted) {}
         for (int i = 0; i < nbrInterestPoints; i++)
         {
-            //currentGoalList.Add(EarthAvatar.Instance.GetRandomAngle());
             AddStructure();
         }
+
+        nbrTrees = Random.Range(MinTrees, MaxTrees);
 
         for (int j = 0; j < nbrTrees; j++)
         {
