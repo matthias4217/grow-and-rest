@@ -9,6 +9,8 @@ using Random = UnityEngine.Random;
 public enum StructureChoice {
     Dolmen,
     LittleTree,
+    Pyramid,
+    Triangle,
     Gateway,
     Guillotine,
     Statue,
@@ -90,7 +92,7 @@ public class Structure
         Structure dolmen = new Structure();
         dolmen.points = new[] {(4,0), (6,0), (3,1), (4,1), (5,1), (6,1), (7,1)};
         dolmen.availablePoints = new List<int>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < dolmen.points.Length; i++)
             dolmen.availablePoints.Add(i);
         dolmen.GetSize();
         dolmen.type = StructureType.Easy;
@@ -113,13 +115,52 @@ public class Structure
             (4,4)
         };
         structure.availablePoints = new List<int>();
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < structure.points.Length; i++)
             structure.availablePoints.Add(i);
         structure.GetSize();
         structure.type = StructureType.Easy;
         return structure;
     }
 
+    public static Structure GetPyramid()
+    {
+        Structure structure = new Structure();
+        structure.points = new[] {(2,0),
+            (3,0),
+            (4,0),
+            (5,0),
+            (6,0),
+            (3,1),
+            (4,1),
+            (5,1),
+            (4,2)
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Easy;
+        return structure;
+    }
+
+    public static Structure GetTriangle()
+    {
+        Structure structure = new Structure();
+        structure.points = new[] {(3,0),
+            (4,0),
+            (5,0),
+            (3,1),
+            (4,1),
+            (3,2)
+
+        };
+        structure.availablePoints = new List<int>();
+        for (int i = 0; i < structure.points.Length; i++)
+            structure.availablePoints.Add(i);
+        structure.GetSize();
+        structure.type = StructureType.Easy;
+        return structure;
+    }
 
     public static Structure GetGateway()
     {

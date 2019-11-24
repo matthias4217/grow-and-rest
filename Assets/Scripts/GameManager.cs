@@ -103,6 +103,8 @@ public class GameManager : MonoBehaviour
         EasyStructures = new List<StructureChoice>();
         EasyStructures.Add(StructureChoice.Dolmen);
         EasyStructures.Add(StructureChoice.LittleTree);
+        EasyStructures.Add(StructureChoice.Pyramid);
+        EasyStructures.Add(StructureChoice.Triangle);
 
     }
 
@@ -261,6 +263,12 @@ public class GameManager : MonoBehaviour
                 break;
             case (int) StructureChoice.LittleTree:
                 resStruct = Structure.GetLittleTree();
+                break;
+            case (int) StructureChoice.Pyramid:
+                resStruct = Structure.GetPyramid();
+                break;
+            case (int) StructureChoice.Triangle:
+                resStruct = Structure.GetTriangle();
                 break;
             default:
                 throw new Exception("Out of range !");
