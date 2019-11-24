@@ -244,9 +244,26 @@ public class GameManager : MonoBehaviour
             );
     }
 
+    public void GetNewPlayerStructure(float angle)
+    {
+        StructureChoice choice = currentPlayerStrucEnum;
+        switch (choice)
+        {
+            case StructureChoice.Gateway:
+                currentPlayerStructure = Structure.GetGateway();
+                break;
+            case StructureChoice.Guillotine:
+                currentPlayerStructure = Structure.GetGuillotine();
+                break;
+            default: break;
+        }
+
+        currentPlayerStructure.originAngle = angle;
+    }
+
     private void AddStructure()
     {
-        Debug.Log("Easy struc : " + EasyStructures.Count);
+        //Debug.Log("Easy struc : " + EasyStructures.Count);
         int choice = Random.Range(0, (int) EasyStructures.Count);
         Structure resStruct;
         switch (choice)
