@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite gateway;
 
     LinkedList<StructureChoice> advancedStructures = new LinkedList<StructureChoice>();
+    // we must have a pointer on this
 
     private bool _instantiated = false;
     private Structure currentPlayerBlueprint = Structure.GetDolmen();
@@ -161,6 +162,17 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             OnPlayerMouseUp();
+        }
+
+        // TODO : get the player input, to switch Blueprint
+        float playerHorizontalInput = Input.GetAxis("Horizontal");
+        if (playerHorizontalInput < 0)
+        {
+            // switch to prev bp
+
+        } else if (playerHorizontalInput > 0)
+        {
+            // switch to next BP
         }
     }
 

@@ -83,6 +83,7 @@ public class Structure
     }
 
 
+    // TODO !!!
     public static Structure GetGateway()
     {
         Structure structure = new Structure();
