@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float startTime;
     private float startTimer;
     private bool generating = false;
+    private bool restarting = false;
+    public Canvas ui;
 
     private void Awake()
     {
@@ -196,11 +198,18 @@ public class GameManager : MonoBehaviour
             PrepareTerrain();
             generating = false;
         }
+        else if (restarting && startTimer >= startTime)
+        {
+            ui.gameObject.SetActive(true);
+            restarting = false;
+        }
         else
         {
             startTimer += Time.deltaTime;
         }
     }
+
+    
 
     public static void OnAllTreesDead()
     {
@@ -208,5 +217,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("End of the game");
         zoomer.Direction = -1;
         zoomer.startZoom();
+        Instance.startTimer = 0.0f;
+        Instance.restarting = true;
     }
 }

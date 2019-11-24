@@ -60,7 +60,7 @@ public class ZoomController : MonoBehaviour
                 if (cam.orthographicSize > 3.5)
                 {
                     float x = Time.fixedTime - timeOnStartMove;
-                    float f = Mathf.Pow(x, 3) * Time.deltaTime * speed;
+                    float f = Mathf.Pow(x, 3) * Time.deltaTime * speed * 2.0f;
                     cam.orthographicSize += f * Direction;
                 }
                 else if (cam.orthographicSize < minCameraSize)
@@ -71,7 +71,7 @@ public class ZoomController : MonoBehaviour
                 else
                 {
                     float x = Time.fixedTime - timeOnStartMove + 0.001f;
-                    float f = 1 / x * Time.deltaTime * 10;
+                    float f = 1 / x * Time.deltaTime * 15.0f;
                     cam.orthographicSize += f * Direction;
                 }
             }
