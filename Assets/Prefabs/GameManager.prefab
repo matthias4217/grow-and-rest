@@ -57,4 +57,4 @@ MonoBehaviour:
   statue: {fileID: 21300000, guid: 32514d8662c1d6cb3afbb0005f6b38e4, type: 3}
   guillotine: {fileID: 21300000, guid: c9b9f3430a921cc828833d5f70096b9d, type: 3}
   gateway: {fileID: 21300000, guid: da9e7c9d679d6a2e6ae5b26e8df08be8, type: 3}
-  EasyStructures: 
+  startTime: 50
