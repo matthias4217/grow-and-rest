@@ -13,6 +13,7 @@ public class SlimeAvatar : MonoBehaviour
     [SerializeField] private SlimeState state;
     [SerializeField] private bool isChosen;
     private SlimeController _controller;
+    [SerializeField] private float erodeChance;
     private Structure relStruct = null;
     public Structure RelStruct
     {
@@ -54,6 +55,15 @@ public class SlimeAvatar : MonoBehaviour
         spriteRenderer.color = ownerColor;
         rb2d.constraints = RigidbodyConstraints2D.None;
     }
+
+    public void Erode()
+    {
+        if (((transform.position - EarthAvatar.Instance.transform.position).magnitude + Random.Range(0.0f, 100.0f)) >= erodeChance)
+        {
+            SlimeFactory.Release(this);
+        }
+    }
+
     /*
     private void OnMouseDown()
     {

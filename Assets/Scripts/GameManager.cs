@@ -301,5 +301,10 @@ public class GameManager : MonoBehaviour
         zoomer.startZoom();
         Instance.startTimer = 0.0f;
         Instance.restarting = true;
+        SlimeAvatar[] slimes = FindObjectsOfType<SlimeAvatar>();
+        foreach (SlimeAvatar slime in slimes)
+        {
+            slime.Erode();
+        }
     }
 }
