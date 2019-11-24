@@ -18,11 +18,15 @@ public class SlimeController : MonoBehaviour
     private SlimeAvatar avatar;
     private GameManager gameManager;
 
-    private void Start()
+    private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        avatar = GetComponent<SlimeAvatar>();
         gameManager = GameManager.Instance;
+        avatar = GetComponent<SlimeAvatar>();
+    }
+
+    private void Start()
+    {
         FindObjectOfType<GameManager>().PlayerMouseDownObserver += PlayerSelectedGoal;
         FindObjectOfType<GameManager>().PlayerMouseUpObserver += PlayerUnSelectedGoal;
     }
@@ -67,6 +71,8 @@ public class SlimeController : MonoBehaviour
         // get a goal :
         // find random interest point
         Tuple<Vector3, Structure> res = GameManager.Instance.GetRandomInterestPoint();
+        if (avatar == null)
+            Debug.LogError("avatar null");
         goal = res.Item1;
         avatar.RelStruct = res.Item2;
     }

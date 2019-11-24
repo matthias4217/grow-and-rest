@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
     public int MinTrees = 2;
     public GameObject[] TreePrefab;
     private bool _instantiated = false;
+    private Structure currentPlayerBlueprint = Structure.GetDolmen();
     public static GameManager Instance {get; private set; }
     //private List<float> currentGoalList = new List<float>();
-    private List<Structure> structures = new List<Structure>();
+    private List<Structure> availableStructures = new List<Structure>();
+    private List<Structure> bookedStructures = new List<Structure>();
 
     public event EventHandler PlayerMouseDownObserver;
 
@@ -58,7 +60,7 @@ public class GameManager : MonoBehaviour
 
         Random.InitState((int) System.DateTime.Now.Ticks);
 
-        
+
     }
 
     // Start is called before the first frame update
@@ -81,12 +83,13 @@ public class GameManager : MonoBehaviour
 
     public Tuple<Vector3, Structure> GetRandomInterestPoint()
     {
-        int structIndex = Random.Range(0, structures.Count);
-        Structure selectedStruct = structures[structIndex];
+        int structIndex = Random.Range(0, availableStructures.Count);
+        Structure selectedStruct = availableStructures[structIndex];
         var selectedPoint = selectedStruct.GetRandomAvailablePoint();
         if (selectedStruct.IsStructFull())
         {
-            structures.Remove(selectedStruct);
+            availableStructures.Remove(selectedStruct);
+            bookedStructures.Add(selectedStruct);
             AddStructure();
         }
         float rotationAngle = selectedStruct.originAngle;
@@ -115,7 +118,7 @@ public class GameManager : MonoBehaviour
 
         }
         resStruct.originAngle = EarthAvatar.Instance.GetRandomAngle();
-        structures.Add(resStruct);
+        availableStructures.Add(resStruct);
     }
 
     // Update is called once per frame

@@ -33,6 +33,16 @@ public class Structure
         return points[pointIndex];
     }
 
+    public void ReleasePoint(Vector3 goal)
+    {
+        for (int i=0; i<points.Length; i++)
+        {
+            var p = points[i];
+            if (p.Item1 == goal.x && p.Item2 == goal.y)
+                availablePoints.Add(i);
+        }
+    }
+
     private void GetSize()
     {
         foreach (var p in points)
@@ -74,15 +84,5 @@ public class Structure
             guillotine.availablePoints.Add(i);
         guillotine.GetSize();
         return guillotine;
-    }
-
-    public void ReleasePoint(Vector3 goal)
-    {
-        for (int i=0; i<points.Length; i++)
-        {
-            var p = points[i];
-            if (p.Item1 == goal.x && p.Item2 == goal.y)
-                availablePoints.Add(i);
-        }
     }
 }
