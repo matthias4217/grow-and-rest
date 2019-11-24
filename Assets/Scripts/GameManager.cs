@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SelectBlueprint1();
+        //SelectBlueprint1();
     }
 
     public void StartGame()
