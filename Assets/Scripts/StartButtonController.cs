@@ -6,6 +6,7 @@ public class StartButtonController : MonoBehaviour
 {
 
     public AudioSource buttonSound;
+    public Canvas ui;
 
     private void OnMouseOver()
     {
@@ -23,6 +24,6 @@ public class StartButtonController : MonoBehaviour
 
     public void MyJobIsDone()
     {
-        gameObject.SetActive(false);
+        ui.gameObject.SetActive(false);
     }
 }

@@ -51,7 +51,8 @@ MonoBehaviour:
   TreePrefab:
   - {fileID: 2933015644487615052, guid: 6935dbd1cff520b4789024cc64df44d0, type: 3}
   - {fileID: 8245705598036751776, guid: 0a5ea475226770f4fad8ae4c964da3d2, type: 3}
-  - {fileID: 9204254248939808762, guid: 8b061000b7f291d4686157007ad71c13, type: 3}
+  startTime: 50
+  startButton: {fileID: 0}
   torii: {fileID: 21300000, guid: fe022baa674b20f0085da4f7386eaeff, type: 3}
   temple2: {fileID: 21300000, guid: fde244bb19eb1f89bbddf9bc5a0fa618, type: 3}
   statue: {fileID: 21300000, guid: d478346ef1f2ca9708429b8fa7eca066, type: 3}
