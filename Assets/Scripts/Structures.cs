@@ -12,11 +12,12 @@ enum StructureChoice {
     StructureChoiceSize
 }
 
-class Structure
+public class Structure
 {
     public float originAngle;
     public (int, int)[] points;
     public List<int> availablePoints;
+    public Vector2 size = Vector2.zero;
 
 
     public bool IsStructFull()
@@ -32,6 +33,17 @@ class Structure
         return points[pointIndex];
     }
 
+    private void GetSize()
+    {
+        foreach (var p in points)
+        {
+            if (p.Item1 > size.x)
+                size.x = p.Item1;
+            if (p.Item2 > size.y)
+                size.y = p.Item2;
+        }
+    }
+
     public static Structure GetDolmen()
     {
         Structure dolmen = new Structure();
@@ -39,7 +51,7 @@ class Structure
         dolmen.availablePoints = new List<int>();
         for (int i = 0; i < 7; i++)
             dolmen.availablePoints.Add(i);
-
+        dolmen.GetSize();
         return dolmen;
     }
 
@@ -60,7 +72,17 @@ class Structure
         guillotine.availablePoints = new List<int>();
         for (int i = 0; i < guillotine.points.Length; i++)
             guillotine.availablePoints.Add(i);
-
+        guillotine.GetSize();
         return guillotine;
+    }
+
+    public void ReleasePoint(Vector3 goal)
+    {
+        for (int i=0; i<points.Length; i++)
+        {
+            var p = points[i];
+            if (p.Item1 == goal.x && p.Item2 == goal.y)
+                availablePoints.Add(i);
+        }
     }
 }

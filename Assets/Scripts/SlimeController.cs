@@ -65,7 +65,9 @@ public class SlimeController : MonoBehaviour
     {
         // get a goal :
         // find random interest point
-        goal = GameManager.Instance.GetRandomInterestPoint();
+        Tuple<Vector3, Structure> res = GameManager.Instance.GetRandomInterestPoint();
+        goal = res.Item1;
+        avatar.RelStruct = res.Item2;
     }
 
     private void TeleportToGoal()
@@ -88,6 +90,12 @@ public class SlimeController : MonoBehaviour
 
     public void PlayerSelectedGoal(object sender, EventArgs args)
     {
+        if (avatar.RelStruct != null)
+        {
+            avatar.RelStruct.ReleasePoint(goal);
+            avatar.RelStruct = null;
+        }
+
         if (avatar.State == SlimeState.Living)
         {
             Goal = (args as PlayerObserverEventArgs).Position;

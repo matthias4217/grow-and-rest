@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Vector3 GetRandomInterestPoint()
+    public Tuple<Vector3, Structure> GetRandomInterestPoint()
     {
         int structIndex = Random.Range(0, structures.Count);
         Structure selectedStruct = structures[structIndex];
@@ -88,9 +88,12 @@ public class GameManager : MonoBehaviour
             AddStructure();
         }
         float rotationAngle = selectedStruct.originAngle;
-        return EarthAvatar.Instance.GetUnityCoords(selectedStruct.originAngle)
+        return new Tuple<Vector3, Structure> (
+            EarthAvatar.Instance.GetUnityCoords(selectedStruct.originAngle)
                + Quaternion.AngleAxis(rotationAngle, Vector3.back)
-               * new Vector3(selectedPoint.Item1 * slimeSize, selectedPoint.Item2 * slimeSize);
+               * new Vector3(selectedPoint.Item1 * slimeSize, selectedPoint.Item2 * slimeSize),
+            selectedStruct
+            );
     }
 
     private void AddStructure()

@@ -13,6 +13,13 @@ public class SlimeAvatar : MonoBehaviour
     [SerializeField] private SlimeState state;
     [SerializeField] private bool isChosen;
     private SlimeController _controller;
+    private Structure relStruct = null;
+    public Structure RelStruct
+    {
+        get => relStruct;
+        set => relStruct = value;
+    }
+
     public SlimeState State
     {
         get { return state; }
