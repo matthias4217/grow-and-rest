@@ -63,8 +63,6 @@ public class GameManager : MonoBehaviour
 
     private static ZoomController zoomer;
 
-    [SerializeField] private float startTime;
-    private float startTimer;
     private bool generating = false;
     private bool restarting = false;
     public Canvas ui;
@@ -119,7 +117,6 @@ public class GameManager : MonoBehaviour
         SlimeFactory.color = colors[Random.Range(0, 6)];
         zoomer.Direction = 1;
         zoomer.startZoom();
-        startTimer = 0.0f;
         generating = true;
     }
 
@@ -327,22 +324,16 @@ public class GameManager : MonoBehaviour
             TreeGenObserver.EndEvent();
         }
 
-        if (generating && startTimer >= startTime)
+        if (Mathf.Abs(Camera.main.orthographicSize - 1.65f) <= 0.01f && generating)
         {
             PrepareTerrain();
             generating = false;
         }
-        else if (restarting && startTimer >= startTime)
+        if ((Camera.main.orthographicSize - 0.5f) <= float.Epsilon)
         {
-            //ui.gameObject.SetActive(true);
+            ui.gameObject.SetActive(true);
             restarting = false;
         }
-        else
-        {
-            startTimer += Time.deltaTime;
-        }
-
-        ui.gameObject.SetActive((Camera.main.orthographicSize - 0.5f) <= float.Epsilon);
     }
 
 
@@ -353,7 +344,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("End of the game");
         zoomer.Direction = -1;
         zoomer.startZoom();
-        Instance.startTimer = 0.0f;
         Instance.restarting = true;
         SlimeAvatar[] slimes = FindObjectsOfType<SlimeAvatar>();
         foreach (SlimeAvatar slime in slimes)
