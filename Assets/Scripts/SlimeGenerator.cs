@@ -40,13 +40,14 @@ public class SlimeGenerator : MonoBehaviour
         }
     }
 
-    private void OnMouseDown()
+    // TODO : uncomment and fix bug
+    /*private void OnMouseDown()
     {
         if (ToGenerate > 0)
         {
             GenerateSlime();
         }
-    }
+    }*/
 
     void Derelict()
     {
