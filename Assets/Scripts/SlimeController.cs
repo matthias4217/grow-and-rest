@@ -27,8 +27,8 @@ public class SlimeController : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<GameManager>().PlayerMouseDownObserver += PlayerSelectedGoal;
-        FindObjectOfType<GameManager>().PlayerMouseUpObserver += PlayerUnSelectedGoal;
+        gameManager.PlayerMouseDownObserver += PlayerSelectedGoal;
+        gameManager.PlayerMouseUpObserver += PlayerUnSelectedGoal;
     }
 
     // Update is called once per frame
@@ -97,6 +97,12 @@ public class SlimeController : MonoBehaviour
 
     public void PlayerSelectedGoal(object sender, EventArgs args)
     {
+        gameManager.PlayerMouseDownObserver -= PlayerSelectedGoal;
+        GetPlayerSelectedGoal((args as PlayerObserverEventArgs).PlayerStructure);
+    }
+
+    public void GetPlayerSelectedGoal(Structure playerStructure)
+    {
         if (avatar.RelStruct != null)
         {
             avatar.RelStruct.ReleasePoint(goal);
@@ -106,23 +112,25 @@ public class SlimeController : MonoBehaviour
         if (avatar.State == SlimeState.Living)
         {
 
-            (int, int) point = gameManager.currentPlayerStructure.GetRandomAvailablePoint();
-            float rotationAngle = gameManager.currentPlayerStructure.originAngle;
-
-            if (gameManager.currentPlayerStructure.IsStructFull())
+            // if the structure is already booked full, the slime gets a natural goal and not a player goal
+            if (playerStructure.IsStructFull())
             {
-                // TODO :
-                gameManager.GetNewPlayerStructure(EarthAvatar.Instance.GetRandomAngle());
+                GetNewGoal();
+                return;
             }
-            Goal = EarthAvatar.Instance.GetUnityCoords(gameManager.currentPlayerStructure.originAngle)
-                + Quaternion.AngleAxis(rotationAngle, Vector3.back)
-                * new Vector3(point.Item1 * gameManager.slimeSize, point.Item2 * gameManager.slimeSize);
-            //Goal = new Vector3(point.Item1, point.Item2);
+
+            (int, int) point = playerStructure.GetRandomAvailablePoint();
+            float rotationAngle = playerStructure.originAngle;
+
+            Goal = EarthAvatar.Instance.GetUnityCoords(playerStructure.originAngle)
+                   + Quaternion.AngleAxis(rotationAngle, Vector3.back)
+                   * new Vector3(point.Item1 * gameManager.slimeSize, point.Item2 * gameManager.slimeSize);
         }
     }
 
     public void PlayerUnSelectedGoal(object sender, EventArgs args)
     {
+        gameManager.PlayerMouseDownObserver += PlayerSelectedGoal;
         if (avatar.State == SlimeState.Living)
         {
             GetNewGoal();

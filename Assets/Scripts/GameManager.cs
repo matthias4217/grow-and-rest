@@ -10,7 +10,8 @@ using Random = UnityEngine.Random;
 
 public class PlayerObserverEventArgs : EventArgs
 {
-    public Vector2 Position { get; set; }
+    //public Vector2 Position { get; set; }
+    public Structure PlayerStructure { get; set; }
 }
 
 
@@ -311,16 +312,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (!wasMousePressed && !restarting && !generating)
+            if (!restarting && !generating)
                 GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
-            PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
-            poea.Position = mousePosition;
-            OnPlayerMouseDown(poea);
-            wasMousePressed = true;
         }
-        else
+        if (Input.GetButton("Fire1"))
         {
-            wasMousePressed = false;
+            PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
+            poea.PlayerStructure = currentPlayerStructure;
+            OnPlayerMouseDown(poea);
         }
         if (Input.GetButtonUp("Fire1"))
         {

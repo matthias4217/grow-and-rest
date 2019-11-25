@@ -52,7 +52,7 @@ public class SlimeAvatar : MonoBehaviour
     public void ResetState()
     {
         State = SlimeState.Living;
-        spriteRenderer.color = ownerColor;
+        //spriteRenderer.color = ownerColor;
         rb2d.constraints = RigidbodyConstraints2D.None;
     }
 
