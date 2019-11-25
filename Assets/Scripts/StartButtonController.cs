@@ -25,6 +25,6 @@ public class StartButtonController : MonoBehaviour
     public void MyJobIsDone()
     {
         //ui.gameObject.SetActive(false);
-        ui.gameObject.SetActive(false);
+        //ui.gameObject.SetActive(false);
     }
 }

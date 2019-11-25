@@ -309,13 +309,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && !TreeGenObserver.GeneratorClicked())
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (!restarting && !generating)
                 GetNewPlayerStructure(EarthAvatar.Instance.GetAngle(mousePosition));
         }
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !TreeGenObserver.GeneratorClicked())
         {
             PlayerObserverEventArgs poea = new PlayerObserverEventArgs();
             poea.PlayerStructure = currentPlayerStructure;
@@ -324,6 +324,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             OnPlayerMouseUp();
+            TreeGenObserver.EndEvent();
         }
 
         if (generating && startTimer >= startTime)
@@ -333,13 +334,15 @@ public class GameManager : MonoBehaviour
         }
         else if (restarting && startTimer >= startTime)
         {
-            ui.gameObject.SetActive(true);
+            //ui.gameObject.SetActive(true);
             restarting = false;
         }
         else
         {
             startTimer += Time.deltaTime;
         }
+
+        ui.gameObject.SetActive((Camera.main.orthographicSize - 0.5f) <= float.Epsilon);
     }
 
 

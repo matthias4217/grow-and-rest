@@ -41,13 +41,14 @@ public class SlimeGenerator : MonoBehaviour
     }
 
     // TODO : uncomment and fix bug
-    /*private void OnMouseDown()
+    private void OnMouseDown()
     {
         if (ToGenerate > 0)
         {
+            TreeGenObserver.Notify();
             GenerateSlime();
         }
-    }*/
+    }
 
     void Derelict()
     {
