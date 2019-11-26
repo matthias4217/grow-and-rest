@@ -329,7 +329,7 @@ public class GameManager : MonoBehaviour
             PrepareTerrain();
             generating = false;
         }
-        if ((Camera.main.orthographicSize - 0.5f) <= float.Epsilon)
+        if (restarting && (Camera.main.orthographicSize - 0.5f) <= float.Epsilon)
         {
             ui.gameObject.SetActive(true);
             restarting = false;
